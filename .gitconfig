@@ -1,6 +1,6 @@
 [user]
-	name = Gergely Nagy
-	email = ngg@tresorit.com
+	name = Balázs Szücs
+	email = balazs.szucs@tresorit.com
 [alias]
 	graph = log --graph --oneline --decorate
 	k = !gitk --date-order
@@ -25,7 +25,6 @@
 	autosetuprebase = always
 [credential]
 	helper = store
-
 [diff]
 	tool = vimdiff
 	guitool = bc4
@@ -36,7 +35,6 @@
 	cmd = bcompare \"$LOCAL\" \"$REMOTE\"
 [difftool "vimdiff"]
 	cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
-
 [merge]
 	tool = vimdiff
 	guitool = bc4
