@@ -38,12 +38,11 @@ antigen use oh-my-zsh
 antigen bundles <<EOBUNDLES
 git
 screen
-vi-mode
 z
 systemadmin
 zsh_reload
 history-substring-search
 zsh-users/zsh-syntax-highlighting
 EOBUNDLES
-antigen theme $HOME/.local/share ngg --no-local-clone
+antigen theme robbyrussell
 antigen apply
