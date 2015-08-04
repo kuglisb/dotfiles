@@ -1,5 +1,5 @@
 [user]
-	name = Balázs Szücs
+	name = Balazs Szucs
 	email = balazs.szucs@tresorit.com
 [alias]
 	graph = log --graph --oneline --decorate
