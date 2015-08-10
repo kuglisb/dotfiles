@@ -1,19 +1,19 @@
 #zkbd
-autoload zkbd
-[[ ! -d ~/.zkbd ]] && mkdir ~/.zkbd
-[[ ! -f ~/.zkbd/$TERM-$VENDOR-$OSTYPE ]] && zkbd
-source  ~/.zkbd/$TERM-$VENDOR-$OSTYPE
-bindkey -v
-[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"   history-beginning-search-backward
-[[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}" history-beginning-search-forward
-[[ -n "${key[Home]}"     ]]  && bindkey  "${key[Home]}"     beginning-of-line
-[[ -n "${key[End]}"      ]]  && bindkey  "${key[End]}"      end-of-line
-[[ -n "${key[Insert]}"   ]]  && bindkey  "${key[Insert]}"   overwrite-mode
-[[ -n "${key[Delete]}"   ]]  && bindkey  "${key[Delete]}"   delete-char
-[[ -n "${key[Up]}"       ]]  && bindkey  "${key[Up]}"       history-substring-search-up
-[[ -n "${key[Down]}"     ]]  && bindkey  "${key[Down]}"     history-substring-search-down
-[[ -n "${key[Left]}"     ]]  && bindkey  "${key[Left]}"     backward-char
-[[ -n "${key[Right]}"    ]]  && bindkey  "${key[Right]}"    forward-char
+#autoload zkbd
+#[[ ! -d ~/.zkbd ]] && mkdir ~/.zkbd
+#[[ ! -f ~/.zkbd/$TERM-$VENDOR-$OSTYPE ]] && zkbd
+#source  ~/.zkbd/$TERM-$VENDOR-$OSTYPE
+#bindkey -v
+#[[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"   history-beginning-search-backward
+#[[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}" history-beginning-search-forward
+#[[ -n "${key[Home]}"     ]]  && bindkey  "${key[Home]}"     beginning-of-line
+#[[ -n "${key[End]}"      ]]  && bindkey  "${key[End]}"      end-of-line
+#[[ -n "${key[Insert]}"   ]]  && bindkey  "${key[Insert]}"   overwrite-mode
+#[[ -n "${key[Delete]}"   ]]  && bindkey  "${key[Delete]}"   delete-char
+#[[ -n "${key[Up]}"       ]]  && bindkey  "${key[Up]}"       history-substring-search-up
+#[[ -n "${key[Down]}"     ]]  && bindkey  "${key[Down]}"     history-substring-search-down
+#[[ -n "${key[Left]}"     ]]  && bindkey  "${key[Left]}"     backward-char
+#[[ -n "${key[Right]}"    ]]  && bindkey  "${key[Right]}"    forward-char
 
 #mime
 autoload -U zsh-mime-setup

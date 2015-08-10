@@ -89,7 +89,7 @@ set noswapfile
 " Refresh modified files
 set autoread
 set updatetime=1000
-autocmd CursorHold,CursorHoldI,WinEnter,BufWinEnter * silent! checktime
+" autocmd CursorHold,CursorHoldI,WinEnter,BufWinEnter * silent! checktime
 
 " Share X windows clipboard
 if has('unnamedplus')
@@ -211,12 +211,12 @@ nnoremap <F5> :call StartDebug(g:GetTresoritCLIPath(), "")<Left><Left>
 nnoremap <leader><F5> :call StartDebug(g:GetTresoritTestPath(), "-t " . expand("<cword>" . ""))<Left><Left><Left>
 
 " Better regex syntax
-nnoremap / /\v
-vnoremap / /\v
-cnoremap s/ s/\v
+" nnoremap / /\v
+" vnoremap / /\v
+" cnoremap s/ s/\v
 
 " Faster Escape
-inoremap jj <ESC>
+inoremap jj <ESC> 
 
 " In normal mode, we use : much more often than ; so lets swap them.
 " WARNING: this will cause any "ordinary" map command without the "nore" prefix
@@ -226,7 +226,7 @@ inoremap jj <ESC>
 nnoremap ; :
 nnoremap : ;
 vnoremap ; :
-vnoremap : ;
+vnoremap : ; 
 
 " Re-adjust windows on window resize
 autocmd VimResized * wincmd =
