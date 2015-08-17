@@ -17,6 +17,7 @@
 [core]
 	autocrlf = input
 	editor = vim
+	excludesfile = /home/balazs.szucs/.gitignore_global
 [push]
 	default = simple
 [pull]
