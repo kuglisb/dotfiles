@@ -36,7 +36,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'qwertologe/nextval.vim'
 Plugin 'elzr/vim-json'
 if (s:hostname =~ "bp1-dsklin")
-	Plugin 'https://bitbucket.org/tresorit/vim-lldb.git'
+	"Plugin 'https://bitbucket.org/tresorit/vim-lldb.git'
 	Plugin 'https://bitbucket.org/tresorit/vimtresorit.git'
 endif
 call vundle#end()
@@ -223,10 +223,10 @@ inoremap jj <ESC>
 " that uses ":" to fail. For instance, "map <f2> :w" would fail, since vim will
 " read ":w" as ";w" because of the below remappings. Use "noremap"s in such
 " situations and you'll be fine.
-nnoremap ; :
-nnoremap : ;
-vnoremap ; :
-vnoremap : ; 
+" nnoremap ; :
+" nnoremap : ;
+" vnoremap ; :
+" vnoremap : ; 
 
 " Re-adjust windows on window resize
 autocmd VimResized * wincmd =

@@ -448,3 +448,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- }}}
 
 os.execute("xscreensaver -no-splash &")
+os.execute("tresorit --hidden &")
