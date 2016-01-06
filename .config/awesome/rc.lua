@@ -274,7 +274,9 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "p", function() menubar.show() end),
+    -- Screenshot
+    awful.key({ modkey, "Shift" }, "s", function() os.execute("scrot ~/screenshots/ScreenShot-%Y-%m-%d-%T.png") end)
 )
 
 clientkeys = awful.util.table.join(

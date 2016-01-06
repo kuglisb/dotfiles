@@ -27,17 +27,15 @@
 [credential]
 	helper = store
 [diff]
-	tool = vimdiff
+	tool = bc4 
 	guitool = bc4
 	algorithm = histogram
 [difftool]
 	prompt = false
 [difftool "bc4"]
 	cmd = bcompare \"$LOCAL\" \"$REMOTE\"
-[difftool "vimdiff"]
-	cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
 [merge]
-	tool = vimdiff
+	tool = bc4
 	guitool = bc4
 	conflictstyle = diff3
 [mergetool]

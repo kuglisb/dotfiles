@@ -35,6 +35,9 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'qwertologe/nextval.vim'
 Plugin 'elzr/vim-json'
+Plugin 'peterhoeg/vim-qml'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 if (s:hostname =~ "bp1-dsklin")
 	"Plugin 'https://bitbucket.org/tresorit/vim-lldb.git'
 	Plugin 'https://bitbucket.org/tresorit/vimtresorit.git'
@@ -144,7 +147,6 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " VimTresorit
-noremap <silent> <F3> :Autoformat<CR><CR>
 nnoremap <silent> <leader>mh :ToggleMakeHost<CR>
 nnoremap <silent> <leader>mc :ToggleMakeCompiler<CR>
 nnoremap <silent> <leader>md :ToggleMakeDebug<CR>
@@ -211,12 +213,12 @@ nnoremap <F5> :call StartDebug(g:GetTresoritCLIPath(), "")<Left><Left>
 nnoremap <leader><F5> :call StartDebug(g:GetTresoritTestPath(), "-t " . expand("<cword>" . ""))<Left><Left><Left>
 
 " Better regex syntax
-" nnoremap / /\v
-" vnoremap / /\v
-" cnoremap s/ s/\v
+nnoremap / /\v
+vnoremap / /\v
+cnoremap s/ s/\v
 
 " Faster Escape
-inoremap jj <ESC> 
+inoremap jj <ESC>
 
 " In normal mode, we use : much more often than ; so lets swap them.
 " WARNING: this will cause any "ordinary" map command without the "nore" prefix
@@ -226,7 +228,7 @@ inoremap jj <ESC>
 " nnoremap ; :
 " nnoremap : ;
 " vnoremap ; :
-" vnoremap : ; 
+" vnoremap : ;
 
 " Re-adjust windows on window resize
 autocmd VimResized * wincmd =
@@ -264,3 +266,21 @@ set undodir=~/.vim/undohistory
 set undofile
 
 set backspace=2
+
+" custom settings
+map <C-k> :NERDTreeToggle<CR>
+
+" trim whitespaces
+autocmd BufWritePre * :%s/\s\+$//e
+
+" gui settings
+set go=acgt
+
+" bufferdelete on F3
+noremap <silent> <F3> :bd<CR><CR>
+
+" disable updating the default register on pasting and single character
+" deletion using the black hole register (/dev/null)
+vnoremap p "_dP
+noremap x "_x
+
