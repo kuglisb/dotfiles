@@ -18,6 +18,7 @@
 	autocrlf = input
 	editor = vim
 	excludesfile = /home/balazs.szucs/.gitignore_global
+	pager = less -x4
 [push]
 	default = simple
 [pull]

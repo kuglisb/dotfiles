@@ -62,6 +62,7 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+set relativenumber
 set number
 
 set t_Co=256
@@ -225,10 +226,10 @@ inoremap jj <ESC>
 " that uses ":" to fail. For instance, "map <f2> :w" would fail, since vim will
 " read ":w" as ";w" because of the below remappings. Use "noremap"s in such
 " situations and you'll be fine.
-" nnoremap ; :
-" nnoremap : ;
-" vnoremap ; :
-" vnoremap : ;
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
 
 " Re-adjust windows on window resize
 autocmd VimResized * wincmd =
@@ -268,7 +269,7 @@ set undofile
 set backspace=2
 
 " custom settings
-map <C-k> :NERDTreeToggle<CR>
+map <C-k> ;NERDTreeToggle<CR>
 
 " trim whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
@@ -284,3 +285,13 @@ noremap <silent> <F3> :bd<CR><CR>
 vnoremap p "_dP
 noremap x "_x
 
+" astyle format
+nnoremap <silent> <leader>af :! astyle -n %<CR>
+
+" visualise whitespaces
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:·
+
+" devel mappings
+" :!../Scripts/build.sh Run
+" :!../Scripts/lrelease.sh LRelease
+" :!../Scripts/lupdate.sh LUpdate
