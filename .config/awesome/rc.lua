@@ -81,7 +81,19 @@ end
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {}
-for s = 1, screen.count() do
+local first_screen = {
+	names = { "www", "dev", "misc" },
+	layout = { layouts[2], layouts[3], layouts[2] }
+}
+local second_screen = {
+	names = { "sh", "dev", "slack", "misc" },
+	layout = { layouts[2], layouts[2], layouts[2], layouts[1] }
+}
+
+tags[2] = awful.tag(first_screen.names, 2, first_screen.layout)
+tags[1] = awful.tag(second_screen.names, 1, second_screen.layout)
+
+for s = 3, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
 end
