@@ -64,18 +64,17 @@ local layouts =
 --    awful.layout.suit.fair.horizontal,
 --    awful.layout.suit.spiral,
 --    awful.layout.suit.spiral.dwindle,
---    awful.layout.suit.max,
+    awful.layout.suit.max,
  --   awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
 }
 -- }}}
 
 -- {{{ Wallpaper
-if beautiful.wallpaper then
-    for s = 1, screen.count() do
-        gears.wallpaper.maximized(beautiful.wallpaper, s, true)
-    end
-end
+-- if beautiful.wallpaper then
+gears.wallpaper.fit("/home/balazs.szucs/Tresors/Wallpapers/9o5c0zF.png", 1)
+gears.wallpaper.fit("/home/balazs.szucs/Tresors/Wallpapers/9o5c0zF-3.png", 2)
+-- end
 -- }}}
 
 -- {{{ Tags
@@ -90,8 +89,8 @@ local second_screen = {
 	layout = { layouts[2], layouts[2], layouts[2], layouts[1] }
 }
 
-tags[2] = awful.tag(first_screen.names, 2, first_screen.layout)
-tags[1] = awful.tag(second_screen.names, 1, second_screen.layout)
+tags[1] = awful.tag(first_screen.names, 1, first_screen.layout)
+tags[2] = awful.tag(second_screen.names, 2, second_screen.layout)
 
 for s = 3, screen.count() do
     -- Each screen has its own tag table.
@@ -123,6 +122,53 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
+
+---- ALSA volume widget
+alsa_channel = "Master" -- Adapt if needed
+i_dir = "/usr/share/icons/gnome/24x24/status/" -- Adapt to the location of your freedesktop icon
+alsawidget = wibox.widget.imagebox()
+alsawidget_tip = awful.tooltip({ objects = { alsawidget }})
+
+function volume(action)
+	local mixer
+	if action == "+" or action == "-" then
+		mixer = awful.util.pread("amixer sset " .. alsa_channel .. " 3%" .. action) --change the step to you taste
+	elseif action == "toggle" then
+		mixer = awful.util.pread("amixer sset " .. alsa_channel .. " " .. action)
+	else
+		mixer = awful.util.pread("amixer get " .. alsa_channel)
+	end
+
+	local volu, mute = string.match(mixer, "([%d]+)%%.*%[([%l]*)")
+	if volu == nil or (mute == "" and volu == "0") or mute == "off" then
+		alsawidget:set_image(i_dir .. "audio-volume-muted.png")
+		alsawidget_tip:set_text("[Muted]")
+	else
+		if tonumber(volu) >= 66 then
+			alsawidget:set_image(i_dir .. "audio-volume-high.png")
+		elseif tonumber(volu) >= 33 then
+			alsawidget:set_image(i_dir .. "audio-volume-medium.png")
+		else
+			alsawidget:set_image(i_dir .. "audio-volume-low.png")
+		end
+		alsawidget_tip:set_text(alsa_channel .. ": " .. volu .. "%")
+	end
+end
+
+volume("set") -- set the icon and tooltip at startup or restart
+
+-- mouse bindings
+alsawidget:buttons(awful.util.table.join(
+	awful.button({ }, 1, function() --click to (un)mute
+		volume("toggle")
+	end),
+	awful.button({ }, 4, function() --wheel to rise or reduce volume
+		volume("+")
+	end),
+	awful.button({ }, 5, function()
+		volume("-")
+	end)
+))
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -204,6 +250,7 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mytextclock)
+	right_layout:add(alsawidget)
     right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
@@ -272,7 +319,14 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
-    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xscreensaver-command -lock") end),
+    awful.key({ modkey, "Control" }, "l",     function () awful.util.spawn("xscreensaver-command -lock") end),
+    awful.key({ modkey,           }, "Up",    function () volume("+") end),
+    awful.key({ modkey,           }, "Down",  function () volume("-") end),
+    awful.key({ modkey,           }, "F12",   function () volume("+") end),
+    awful.key({ modkey,           }, "F11",   function () volume("-") end),
+    awful.key({ modkey,           }, "F8",    function () awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") end),
+    awful.key({ modkey,           }, "F7",    function () awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") end),
+    awful.key({ modkey,           }, "F9",    function () awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") end),
 
 
     -- Prompt
