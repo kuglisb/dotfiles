@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Written on Mon Aug 10 17:34:50 2015 by Qt Creator 3.4.2-->
+<externaltool id="lupdate">
+    <description>Synchronizes translator's ts files with the program code</description>
+    <displayname>Update Translations (lupdate)</displayname>
+    <category>Linguist</category>
+    <order>1</order>
+    <executable output="showinpane" error="showinpane" modifiesdocument="no">
+        <path>%{CurrentProject:QT_INSTALL_BINS}/lupdate</path>
+        <path>lupdate</path>
+        <arguments>-verbose -no-obsolete -locations none %{CurrentProject:FilePath}</arguments>
+        <workingdirectory>%{CurrentProject:Path}</workingdirectory>
+    </executable>
+</externaltool>
