@@ -64,8 +64,8 @@ local layouts =
 --    awful.layout.suit.fair.horizontal,
 --    awful.layout.suit.spiral,
 --    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
- --   awful.layout.suit.max.fullscreen,
+--    awful.layout.suit.max,
+--    awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
 }
 -- }}}
@@ -81,12 +81,12 @@ gears.wallpaper.fit("/home/balazs.szucs/Tresors/Wallpapers/9o5c0zF-3.png", 2)
 -- Define a tag table which hold all screen tags.
 tags = {}
 local first_screen = {
-	names = { "www", "dev", "misc" },
-	layout = { layouts[2], layouts[3], layouts[2] }
+	names = { "w", "+", "✉", "…" },
+	layout = { layouts[2], layouts[1], layouts[2], layouts[2] }
 }
 local second_screen = {
-	names = { "sh", "dev", "slack", "misc" },
-	layout = { layouts[2], layouts[2], layouts[2], layouts[1] }
+	names = { "$", "+", "#", "♫", "…" },
+	layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
 }
 
 tags[1] = awful.tag(first_screen.names, 1, first_screen.layout)
@@ -324,9 +324,18 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Down",  function () volume("-") end),
     awful.key({ modkey,           }, "F12",   function () volume("+") end),
     awful.key({ modkey,           }, "F11",   function () volume("-") end),
-    awful.key({ modkey,           }, "F8",    function () awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") end),
-    awful.key({ modkey,           }, "F7",    function () awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") end),
-    awful.key({ modkey,           }, "F9",    function () awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") end),
+    awful.key({ modkey,           }, "F8",    function ()
+		awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
+		awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
+	end),
+    awful.key({ modkey,           }, "F7",    function ()
+		awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
+		awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
+	end),
+    awful.key({ modkey,           }, "F9",    function ()
+		awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
+		awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.vlc /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
+	end),
 
 
     -- Prompt

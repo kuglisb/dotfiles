@@ -97,9 +97,11 @@ URxvt*depth: 32
 !URxvt*underlineColor: yellow
 
 URxvt*letterSpace: -1
-URxvt*font: xft:Source Code Pro for Powerline:style=Regular:pixelsize=13
-URxvt*boldFont: xft:Source Code Pro for Powerline:style=SemiBold:pixelsize=13
-UXTerm*font: xft:Source Code Pro for Powerline:style=SemiBold:pixelsize=13
+URxvt*font: xft:DejaVu Sans Mono for Powerline:style=Regular:pixelsize=12
+URxvt*boldFont: xft:DejaVu Sans Mono for Powerline:style=Bold:pixelsize=12
+! URxvt*font: xft:Source Code Pro for Powerline:style=Regular:pixelsize=13
+! URxvt*boldFont: xft:Source Code Pro for Powerline:style=SemiBold:pixelsize=13
+UXTerm*font: xft:Source Code Pro for Powerline:style=Regular:pixelsize=13
 
 !URxvt*font: xft:Terminess Powerline:pixelsize=14
 !URxvt*boldFont: xft:Terminess Powerline:bold:pixelsize=14
