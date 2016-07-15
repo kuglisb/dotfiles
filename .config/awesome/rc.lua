@@ -38,7 +38,8 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("/home/balazs.szucs/.config/awesome/themes/awesome-solarized/dark/theme.lua")
+local homeDir = os.getenv("HOME")
+beautiful.init(homeDir .. "/.config/awesome/themes/awesome-solarized/dark/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "terminator"
@@ -72,8 +73,10 @@ local layouts =
 
 -- {{{ Wallpaper
 -- if beautiful.wallpaper then
-gears.wallpaper.fit("/home/balazs.szucs/Tresors/Wallpapers/9o5c0zF.png", 1)
-gears.wallpaper.fit("/home/balazs.szucs/Tresors/Wallpapers/9o5c0zF-3.png", 2)
+gears.wallpaper.fit(homeDir .. "/Tresors/Wallpapers/9o5c0zF.png", 1)
+if screen.count > 1 then
+	gears.wallpaper.fit(homeDir .. "/Tresors/Wallpapers/9o5c0zF-3.png", 2)
+end
 -- end
 -- }}}
 
@@ -90,7 +93,9 @@ local second_screen = {
 }
 
 tags[1] = awful.tag(first_screen.names, 1, first_screen.layout)
-tags[2] = awful.tag(second_screen.names, 2, second_screen.layout)
+if screen.count > 1 then
+	tags[2] = awful.tag(second_screen.names, 2, second_screen.layout)
+end
 
 for s = 3, screen.count() do
     -- Each screen has its own tag table.
