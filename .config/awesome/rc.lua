@@ -60,7 +60,7 @@ local layouts =
     awful.layout.suit.tile,
 --    awful.layout.suit.tile.left,
 --    awful.layout.suit.tile.bottom,
---    awful.layout.suit.tile.top,
+    awful.layout.suit.tile.top,
 --    awful.layout.suit.fair,
 --    awful.layout.suit.fair.horizontal,
 --    awful.layout.suit.spiral,
@@ -74,7 +74,7 @@ local layouts =
 -- {{{ Wallpaper
 -- if beautiful.wallpaper then
 gears.wallpaper.fit(homeDir .. "/Tresors/Wallpapers/9o5c0zF.png", 1)
-if screen.count > 1 then
+if screen.count() > 1 then
 	gears.wallpaper.fit(homeDir .. "/Tresors/Wallpapers/9o5c0zF-3.png", 2)
 end
 -- end
@@ -89,11 +89,11 @@ local first_screen = {
 }
 local second_screen = {
 	names = { "$", "+", "#", "♫", "…" },
-	layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
+	layout = { layouts[2], layouts[2], layouts[3], layouts[2], layouts[2] }
 }
 
 tags[1] = awful.tag(first_screen.names, 1, first_screen.layout)
-if screen.count > 1 then
+if screen.count() > 1 then
 	tags[2] = awful.tag(second_screen.names, 2, second_screen.layout)
 end
 
@@ -129,6 +129,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 mytextclock = awful.widget.textclock()
 
 ---- ALSA volume widget
+amixer_command = "amixer -c 1"
 alsa_channel = "Master" -- Adapt if needed
 i_dir = "/usr/share/icons/gnome/24x24/status/" -- Adapt to the location of your freedesktop icon
 alsawidget = wibox.widget.imagebox()
@@ -137,11 +138,11 @@ alsawidget_tip = awful.tooltip({ objects = { alsawidget }})
 function volume(action)
 	local mixer
 	if action == "+" or action == "-" then
-		mixer = awful.util.pread("amixer sset " .. alsa_channel .. " 3%" .. action) --change the step to you taste
+		mixer = awful.util.pread(amixer_command .. " sset " .. alsa_channel .. " 3%" .. action) --change the step to you taste
 	elseif action == "toggle" then
-		mixer = awful.util.pread("amixer sset " .. alsa_channel .. " " .. action)
+		mixer = awful.util.pread(amixer_command .. " sset " .. alsa_channel .. " " .. action)
 	else
-		mixer = awful.util.pread("amixer get " .. alsa_channel)
+		mixer = awful.util.pread(amixer_command .. " get " .. alsa_channel)
 	end
 
 	local volu, mute = string.match(mixer, "([%d]+)%%.*%[([%l]*)")
@@ -356,7 +357,7 @@ globalkeys = awful.util.table.join(
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end),
     -- Screenshot
-    awful.key({ modkey, "Shift" }, "s", function() os.execute("scrot ~/screenshots/ScreenShot-%Y-%m-%d-%T.png") end)
+    awful.key({ modkey, "Shift" }, "s", function() os.execute("scrot -u ~/screenshots/ScreenShot-%Y-%m-%d-%T.png") end)
 )
 
 clientkeys = awful.util.table.join(

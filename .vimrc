@@ -89,6 +89,7 @@ set secure
 set nobackup
 set writebackup
 set noswapfile
+set tw=120
 
 " Refresh modified files
 set autoread
@@ -276,6 +277,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 
 " gui settings
 set go=acgt
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 
 " bufferdelete on F3
 noremap <silent> <F3> :bd<CR><CR>
