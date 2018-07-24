@@ -3,7 +3,7 @@ and are located in the main repository. Submodules are not covered.
 
 The MIT License (MIT)
 
-Copyright (c) 2015-present Gergely Nagy
+Copyright (c) 2015-present Balazs Szucs
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
