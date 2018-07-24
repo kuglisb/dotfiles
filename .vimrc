@@ -246,7 +246,7 @@ nmap <silent> <leader>sm ysiw)istd::move<Esc>
 syntax enable
 let g:load_doxygen_syntax = 1
 
-set background=dark
+set background=light
 let g:solarized_termcolors = 16
 let g:solarized_termtrans = 1
 colorscheme solarized
@@ -291,7 +291,9 @@ noremap x "_x
 nnoremap <silent> <leader>af :! astyle -n %<CR>
 
 " visualise whitespaces
-set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:·
+set listchars=tab:>-,trail:~,extends:>,precedes:<,space:·
+" set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:·
+set list
 
 " devel mappings
 " :!../Scripts/build.sh Run

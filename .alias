@@ -6,4 +6,8 @@ alias fuck='$(thefuck $(fc -ln -1))'
 alias em="sudo emerge"
 alias emw="sudo emerge -uDN @world"
 alias es="sudo eix-sync -H"
-function vit() { cd ~/git/TresoritCore/Core; vi "$@"}
+alias gg="git lg"
+function vit() { cd ~/git/Tresorit/TresoritQt; vi "$@"}
+function gdd() { ~/.local/bin/gdd.sh }
+function ggg() { ~/.local/bin/ggg.sh }
+

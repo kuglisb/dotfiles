@@ -114,7 +114,7 @@ URxvt*print-pipe: cat > $HOME/$(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
 URxvt*perl-ext-common:
 URxvt*perl-ext:
 
-Xft.dpi:                    96
+Xft.dpi:                    144
 Xft.antialias:              true
 Xft.rgba:                   rgb
 Xft.autohint:               false
@@ -130,3 +130,5 @@ URxvt.pointerBlank:         true
 URxvt.intensityStyles: false
 
 xscreensaver.lock: true
+Xcursor.size: 48
+

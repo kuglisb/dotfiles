@@ -32,7 +32,7 @@ source "$HOME/.alias"
 source "$HOME/.env"
 
 #antigen (oh-my-zsh)
-DISABLE_AUTO_UPDATE=true
+DISABLE_AUTO_UPDATE=false
 source $HOME/.local/share/antigen/antigen.zsh
 antigen use oh-my-zsh
 antigen bundles <<EOBUNDLES
