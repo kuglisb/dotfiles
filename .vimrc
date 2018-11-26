@@ -14,20 +14,18 @@ Plugin 'tpope/vim-surround'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'gregsexton/gitv'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/unite-outline'
 Plugin 'Shougo/neomru.vim'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'bling/vim-airline'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'mbbill/undotree'
 Plugin 'Kris2k/A.vim'
 Plugin 'kris89/vim-multiple-cursors'
 Plugin 'SirVer/ultisnips'
 Plugin 'wikitopian/hardmode'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+"Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'Valloric/ListToggle'
 Plugin 'ngg/vim-protobuf'
@@ -36,12 +34,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'qwertologe/nextval.vim'
 Plugin 'elzr/vim-json'
 Plugin 'peterhoeg/vim-qml'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-if (s:hostname =~ "bp1-dsklin")
-	"Plugin 'https://bitbucket.org/tresorit/vim-lldb.git'
-	Plugin 'https://bitbucket.org/tresorit/vimtresorit.git'
-endif
+" Plugin 'git@bitbucket.org:tresorit/vim-lldb.git'
 call vundle#end()
 filetype plugin indent on
 
@@ -107,24 +100,6 @@ let g:leave_my_textwidth_alone = 1
 " Save as root
 cmap w!! w !sudo tee % >/dev/null
 
-" Unite
-let g:unite_prompt='» '
-let g:unite_source_history_yank_enable = 1
-let g:unite_source_grep_max_candidates = 1000
-if executable('ag')
-	let g:unite_source_grep_command = 'ag'
-	let g:unite_source_grep_default_opts = '--line-numbers --nocolor --nogroup --hidden'
-	let g:unite_source_grep_recursive_opt = ''
-	let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
-endif
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-nnoremap <silent> <C-p> :Unite -start-insert -no-split -buffer-name=file_rec file_rec/async<cr>
-nnoremap <silent> <C-t> :Unite -no-split -buffer-name=outline -auto-preview outline<cr>
-nnoremap <silent> <leader>p :Unite -no-split -buffer-name=mru -auto-preview -quick-match file_mru<cr>
-nnoremap <silent> <leader>y :Unite -buffer-name=yank -quick-match history/yank<cr>
-nnoremap <silent> <leader>b :Unite -buffer-name=buffer -quick-match buffer<cr>
-
 " gitgutter
 let g:gitgutter_map_keys = 0
 let g:gitgutter_max_signs = 5000
@@ -148,26 +123,19 @@ let g:UltiSnipsExpandTrigger="<c-y>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" VimTresorit
-nnoremap <silent> <leader>mh :ToggleMakeHost<CR>
-nnoremap <silent> <leader>mc :ToggleMakeCompiler<CR>
-nnoremap <silent> <leader>md :ToggleMakeDebug<CR>
-nnoremap <silent> <leader>mt :ToggleMakeTests<CR>
-nnoremap <silent> <leader>mi :PrintMakeInformation<CR>
-nnoremap <silent> <leader>bf :exec ":Make -j5 " . g:GetBuildFileParams(@%)<CR>
-nnoremap <silent> <leader>bp :exec ":Make! -j5 " . g:GetBuildProjectParams(@%)<CR>
-nnoremap <silent> <leader>bpk :exec ":Make! -j5 -k " . g:GetBuildProjectParams(@%)<CR>
-nnoremap <silent> <leader>ba :exec ":Make! -j5 " . g:GetBuildAllParams(@%)<CR>
-nnoremap <silent> <leader>bak :exec ":Make! -j5 -k " . g:GetBuildAllParams(@%)<CR>
-
 " good for airline
 set laststatus=2
 set noshowmode
+set background=light
 let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline_powerline_fonts=1
+
+"let g:solarized_termcolors = 16
+"let g:solarized_termtrans = 1
+colorscheme solarized
 
 " EasyMotion
 let g:EasyMotion_smartcase = 1
@@ -211,8 +179,8 @@ function! g:StartDebug(program, args)
 	exec "Lhide registers"
 	exec "Lstart " . a:args
 endfunction
-nnoremap <F5> :call StartDebug(g:GetTresoritCLIPath(), "")<Left><Left>
-nnoremap <leader><F5> :call StartDebug(g:GetTresoritTestPath(), "-t " . expand("<cword>" . ""))<Left><Left><Left>
+" nnoremap <F6> :call StartDebug(g:GetTresoritCLIPath(), "")<Left><Left>
+" nnoremap <leader><F5> :call StartDebug(g:GetTresoritTestPath(), "-t " . expand("<cword>" . ""))<Left><Left><Left>
 
 " Better regex syntax
 nnoremap / /\v
@@ -246,11 +214,6 @@ nmap <silent> <leader>sm ysiw)istd::move<Esc>
 syntax enable
 let g:load_doxygen_syntax = 1
 
-set background=light
-let g:solarized_termcolors = 16
-let g:solarized_termtrans = 1
-colorscheme solarized
-
 noremap <silent> <F1> :bp<CR>
 inoremap <silent> <F1> <Esc>:bp<CR>
 noremap <silent> <F2> :bn<CR>
@@ -269,14 +232,11 @@ set undofile
 
 set backspace=2
 
-" custom settings
-map <C-k> ;NERDTreeToggle<CR>
-
 " trim whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 
 " gui settings
-set go=acgt
+set go=acgtm
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 
 " bufferdelete on F3
@@ -288,12 +248,12 @@ vnoremap p "_dP
 noremap x "_x
 
 " astyle format
-nnoremap <silent> <leader>af :! astyle -n %<CR>
+" nnoremap <silent> <leader>af :! astyle -n %<CR>
 
 " visualise whitespaces
-set listchars=tab:>-,trail:~,extends:>,precedes:<,space:·
+" set listchars=tab:>-,trail:~,extends:>,precedes:<,space:·
 " set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:·
-set list
+" set list
 
 " devel mappings
 " :!../Scripts/build.sh Run
