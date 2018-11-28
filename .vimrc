@@ -35,6 +35,8 @@ Plugin 'qwertologe/nextval.vim'
 Plugin 'elzr/vim-json'
 Plugin 'peterhoeg/vim-qml'
 " Plugin 'git@bitbucket.org:tresorit/vim-lldb.git'
+" Plugin 'gilligan/vim-lldb'
+Plugin 'ctrlpvim/ctrlp.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -131,7 +133,8 @@ let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#show_tabs = 1
-let g:airline_powerline_fonts=1
+" let g:airline_powerline_fonts=1
+silent! call airline#extensions#whitespace#disable()
 
 "let g:solarized_termcolors = 16
 "let g:solarized_termtrans = 1
@@ -166,21 +169,25 @@ let g:lt_location_list_toggle_map = '<leader>l'
 let g:lt_quickfix_list_toggle_map = '<leader>q'
 let g:lt_height = 15
 
+function! GetTresoritLinuxPath()
+	return getcwd() . "../Build/debug/tresorit"
+endfunc
+
 " LLDB
 nnoremap <silent> <F8> :Lcontinue<CR>
 nnoremap <silent> <F9> :Lbreakpoint<CR>
 nnoremap <silent> <F10> :Lnext<CR>
 nnoremap <silent> <F11> :Lstep<CR>
 nnoremap <silent> <leader><F11> :Lfinish<CR>
-function! g:StartDebug(program, args)
+function! g:StartDebug(program)
 	exec "Ltarget " . a:program
 	exec "Lbreakpoint set --name main"
 	exec "Lhide disassembly"
 	exec "Lhide registers"
-	exec "Lstart " . a:args
+	exec "Lstart "
 endfunction
-" nnoremap <F6> :call StartDebug(g:GetTresoritCLIPath(), "")<Left><Left>
-" nnoremap <leader><F5> :call StartDebug(g:GetTresoritTestPath(), "-t " . expand("<cword>" . ""))<Left><Left><Left>
+nnoremap <F6> :call StartDebug(GetTresoritLinuxPath())<Left><Left>
+" nnoremap <leader><F5> :call StartDebug(g:GetTresoritPath(), "-t " . expand("<cword>" . ""))<Left><Left><Left>
 
 " Better regex syntax
 nnoremap / /\v
@@ -202,11 +209,6 @@ vnoremap : ;
 
 " Re-adjust windows on window resize
 autocmd VimResized * wincmd =
-
-" Search and Replace
-if executable('ag')
-	set grepprg=ag\ --nogroup\ --nocolor
-endif
 
 " C++ shortcuts
 nmap <silent> <leader>sm ysiw)istd::move<Esc>
@@ -234,9 +236,12 @@ set backspace=2
 
 " trim whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWrite * :Autoformat
+autocmd FileType qml let b:autoformat_autoindent=0
 
 " gui settings
-set go=acgtm
+" set go=acgt
+set go=acgtm " (m is for menubar in gui)
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
 
 " bufferdelete on F3
@@ -247,15 +252,21 @@ noremap <silent> <F3> :bd<CR><CR>
 vnoremap p "_dP
 noremap x "_x
 
-" astyle format
-" nnoremap <silent> <leader>af :! astyle -n %<CR>
-
-" visualise whitespaces
-" set listchars=tab:>-,trail:~,extends:>,precedes:<,space:·
-" set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:·
-" set list
-
 " devel mappings
 " :!../Scripts/build.sh Run
 " :!../Scripts/lrelease.sh LRelease
 " :!../Scripts/lupdate.sh LUpdate
+
+" CtlrP
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+	" Use Ag over Grep
+	set grepprg=ag\ --nogroup\ --nocolor
+
+	" Use ag in CtrlP for listing files; respects .gitignore
+	let g:ctrlp_user_command = 'ag %s -i -l --nocolor -g ""'
+
+	" ag is fast enough that CtrlP doesn't need to cache
+	" let g:ctrlp_use_caching = 0
+endif
+" let g:ctrlp_custom_ignore = '\v[\/]TresoritCore$'
