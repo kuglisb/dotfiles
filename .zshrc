@@ -32,16 +32,17 @@ source "$HOME/.alias"
 source "$HOME/.env"
 
 #antigen (oh-my-zsh)
-DISABLE_AUTO_UPDATE=false
+#DISABLE_AUTO_UPDATE=false
 source $HOME/.local/share/antigen/antigen.zsh
 antigen use oh-my-zsh
+
+# screen
+# z
+# zsh_reload
+# history-substring-search
 antigen bundles <<EOBUNDLES
 git
-screen
-z
 systemadmin
-zsh_reload
-history-substring-search
 zsh-users/zsh-syntax-highlighting
 EOBUNDLES
 antigen theme robbyrussell
