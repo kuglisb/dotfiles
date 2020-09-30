@@ -11,3 +11,6 @@ function vit() { cd ~/git/Tresorit/TresoritQt; vi "$@"}
 function gdd() { ~/.local/bin/gdd.sh }
 function ggg() { ~/.local/bin/ggg.sh }
 
+alias python=python3
+alias clang++=clang++-9
+alias gsu="git submodule update --init --recursive"
