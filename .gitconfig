@@ -3,9 +3,9 @@
 	email = balazs.szucs@tresorit.com
 [alias]
 	graph = log --graph --oneline --decorate
-    lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(cyan)(%ar)%C(reset) %C(black)%s%C(reset) %C(green)- %an%C(reset)%C(yellow)%d%C(reset)' --all
-    lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-    lg = !"git lg1"
+	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(cyan)(%ar)%C(reset) %C(white)%s%C(reset) %C(green)- %an%C(reset)%C(yellow)%d%C(reset)' --all
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	lg = !"git lg1"
 	k = !gitk --date-order
 	su = submodule update --init --recursive
 	st = status
@@ -22,6 +22,7 @@
 	editor = vim
 	excludesfile = /home/balazs.szucs/.gitignore_global
 	pager = less -x4
+	safecrlf = false
 [push]
 	default = simple
 [pull]
