@@ -4,16 +4,16 @@ call plug#begin()
 
     " Git changes in editor
     Plug 'airblade/vim-gitgutter'
-	
+
     " Syntax highlighting
 	Plug 'sheerun/vim-polyglot'
 
     " Tab completion
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	
+
 	" Fuzzy finder
     Plug 'ctrlpvim/ctrlp.vim'
-    
+
     " Comment with gc
     Plug 'tpope/vim-commentary'
 
@@ -39,8 +39,8 @@ set encoding=UTF-8
 " set undolevels=1000
 " set so=7
 " set hid
-" set ignorecase
-" set smartcase
+set ignorecase
+set smartcase
 " set hlsearch
 " set incsearch
 " set lazyredraw
@@ -179,6 +179,26 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gi <Plug>(coc-implementation)
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
+" Applying code actions to the selected code block
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying code actions at the cursor position
+nmap <leader>ac  <Plug>(coc-codeaction-cursor)
+" Remap keys for apply code actions affect whole buffer
+nmap <leader>as  <Plug>(coc-codeaction-source)
+" Apply the most preferred quickfix action to fix diagnostic on the current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Find symbol of current document
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " }}}
 
 " In normal mode, we use : much more often than ; so lets swap them.
