@@ -24,4 +24,5 @@ export ADB=/usr/local/bin/adb
 
 # Path
 export PATH=$ADB:$AVD:$SDK_MANAGER:$ANDROID_HOME:$JAVA_HOME:$PATH
+source ~/.alias
 

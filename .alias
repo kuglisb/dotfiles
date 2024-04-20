@@ -1,11 +1,8 @@
-alias ls="ls --color=auto --group-directories-first -F -h --time-style=long-iso"
-alias ip="ip -c"
-alias lsv="ls --color=auto --group-directories-first -F -h -a -l --time-style=long-iso"
-alias gg="git lg"
-function vit() { cd ~/git/Tresorit/TresoritQt; vi "$@"}
-function gdd() { ~/.local/bin/gdd.sh }
-function ggg() { ~/.local/bin/ggg.sh }
+# Flutter
+alias fla="flutter analyze"
+alias flrh="flutter run --hot -d macos"
+alias flt="flutter test"
 
-alias python=python3
-alias clang++=clang++-9
+# Git
 alias gsu="git submodule update --init --recursive"
+
