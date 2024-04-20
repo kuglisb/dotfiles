@@ -5,6 +5,8 @@
 ##################
 # Java build tool
 brew install ant
+# Automatically formats Python code to conform to the PEP 8 style guide
+brew install autopep8
 # Dependency manager for Cocoa projects
 brew install cocoapods
 # Distributed revision control system
