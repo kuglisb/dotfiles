@@ -1,51 +1,16 @@
 [user]
 	name = Balazs Szucs
-	email = balazs.szucs@tresorit.com
-[alias]
-	graph = log --graph --oneline --decorate
-	lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(cyan)(%ar)%C(reset) %C(white)%s%C(reset) %C(green)- %an%C(reset)%C(yellow)%d%C(reset)' --all
-	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-	lg = !"git lg1"
-	k = !gitk --date-order
-	su = submodule update --init --recursive
-	st = status
-	ci = commit
-	co = checkout
-	b = branch
-	ignored = !git ls-files -v | grep "^[a-z]"
-	ignore = update-index --assume-unchanged
-	unignore = update-index --no-assume-unchanged
-	dd = difftool -d
-	mtg = mergetool --tool=bc4
+	email = balazs.szucs@me.com
 [core]
-	autocrlf = input
-	editor = vim
-	excludesfile = /home/balazs.szucs/.gitignore_global
-	pager = less -x4
-	safecrlf = false
+	excludesfile = /User/localadmin/.gitignore_global
+	editore = vim
+	page = less -x4
+[credential]
+	helper = osxkeychain
 [push]
 	default = simple
-[pull]
-	rebase = preserve
-[branch]
-	autosetuprebase = always
-[credential]
-	helper = store
-[diff]
-	tool = bc4
-	guitool = bc4
-	algorithm = histogram
-[difftool]
-	prompt = false
-[difftool "bc4"]
-	cmd = bcompare \"$LOCAL\" \"$REMOTE\"
-[merge]
-	tool = bc4
-	guitool = bc4
-	conflictstyle = diff3
-[mergetool]
-	prompt = false
-	keepBackup = false
-	trustExitCode = true
-[mergetool "bc4"]
-	cmd = bcompare \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+	autoSetupRemote = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

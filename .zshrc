@@ -1,23 +1,27 @@
-#various
-setopt glob_dots                # include dotfiles in globbing
-unsetopt bg_nice                # no lower prio for background jobs
-unsetopt list_beep              # no bell on ambiguous completion
-unsetopt hist_beep              # no bell on error in history
-unsetopt beep                   # no bell on error
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-#env
-source "$HOME/.alias"
-source "$HOME/.env"
+ZSH_THEME="robbyrussell"
 
-#antigen (oh-my-zsh)
-#DISABLE_AUTO_UPDATE=false
-source $HOME/.local/share/antigen/antigen.zsh
-antigen use oh-my-zsh
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git flutter zsh-syntax-highlighting vscode)
 
-antigen bundles <<EOBUNDLES
-git
-systemadmin
-zsh-users/zsh-syntax-highlighting
-EOBUNDLES
-antigen theme robbyrussell
-antigen apply
+source $ZSH/oh-my-zsh.sh
+export EDITOR='nvim'
+
+# Android stuff
+export JABBA_VERSION="0.11.2"
+[ -s "/Users/localadmin/.jabba/jabba.sh" ] && source "/Users/localadmin/.jabba/jabba.sh"
+export JAVA_HOME=/Users/localadmin/.jabba/jdk/openjdk@1.17.0/Contents/Home
+export ANDROID_HOME=/usr/local/share/android-commandlinetools
+export SDK_MANAGER=/usr/local/bin/sdkmanager
+export AVD=/usr/local/bin/avdmanager
+export ADB=/usr/local/bin/adb
+
+# Path
+export PATH=$ADB:$AVD:$SDK_MANAGER:$ANDROID_HOME:$JAVA_HOME:$PATH
+

@@ -1,0 +1,10 @@
+{
+    "languageserver": {
+        "csharp-ls": {
+          "command": "csharp-ls",
+          "filetypes": ["cs"],
+          "rootPatterns": ["*.csproj", ".vim/", ".git/", ".hg/"]
+        }
+    },
+    "coc.preferences.formatOnSave": true
+}
