@@ -1,6 +1,0 @@
-LICENSE.md skip
-README.md skip
-.config recurse
-.fonts recurse
-.local recurse
-.vim recurse
