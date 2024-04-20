@@ -140,6 +140,7 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 
 " Coc: {{{
 " https://github.com/razzmatazz/csharp-language-server
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-flutter', 'coc-pyright', 'coc-tsserver', 'coc-html', 'coc-css', 'coc-omnisharp']
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
