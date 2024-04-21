@@ -34,6 +34,7 @@ call plug#end()
 
 filetype plugin indent on
 set encoding=UTF-8
+set clipboard=unnamedplus
 
 " set history=1000
 " set undolevels=1000
@@ -229,4 +230,6 @@ noremap <silent> <F2> :bn<CR>
 inoremap <silent> <F2> <Esc>:bn<CR>
 nnoremap <silent> <space> :noh<CR><space>
 
-
+" Copilot
+imap <silent><script><expr> <C-j> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
