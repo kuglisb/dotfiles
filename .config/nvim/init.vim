@@ -213,6 +213,9 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
+" Close buffer without closing split
+nnoremap <C-c> :bp\|bd #<CR>
+
 " Ctrl + up-down jumps 40 lines
 silent! nnoremap <C-Down> 40j
 silent! nnoremap <C-Up> 40k
