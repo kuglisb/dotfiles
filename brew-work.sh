@@ -12,6 +12,8 @@ brew install neovim
 # Code-search similar to ack
 brew install the_silver_searcher
 
+brew tap homebrew/cask-fonts
+
 ##################
 # Install Casks
 ##################
@@ -19,6 +21,7 @@ brew install the_silver_searcher
 brew install --cask 1password
 # (.NET SDK) Developer platform
 brew install --cask dotnet-sdk
+brew install --cask font-caskaydia-cove-nerd-font
 # (Google Chrome) Web browser
 brew install --cask google-chrome
 # (iTerm2) Terminal emulator as alternative to Apple's Terminal app

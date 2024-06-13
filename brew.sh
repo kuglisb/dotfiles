@@ -24,6 +24,7 @@ brew install node
 # Code-search similar to ack
 brew install the_silver_searcher
 
+brew tap homebrew/cask-fonts
 
 ##################
 # Install Casks
@@ -40,6 +41,7 @@ brew install --cask dotnet-sdk
 brew install --cask firefox
 # (Flutter SDK) UI toolkit for building applications for mobile, web and desktop
 brew install --cask flutter
+brew install --cask font-caskaydia-cove-nerd-font
 # (Google Chrome) Web browser
 brew install --cask google-chrome
 # (Home Assistant) Companion app for Home Assistant home automation software
