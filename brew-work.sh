@@ -26,6 +26,7 @@ brew install --cask iterm2
 brew install --cask microsoft-remote-desktop
 brew install --cask parallels
 brew install --cask spotify
+brew install --cask tresorit
 # (Microsoft Visual Studio Code, VS Code) Open-source code editor
 brew install --cask visual-studio-code
 # (VLC media player) Multimedia player
